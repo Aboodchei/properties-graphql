@@ -1,17 +1,26 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add `node(id: ID!) and `nodes(ids: [ID!]!)`
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    ["property", "valuation", "furnishing"].each do |model_name|
+      klass_name = model_name.camelize
+      klass = klass_name.constantize
+      graphql_klass = "Types::Models::#{klass_name}Type".constantize
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+      field model_name.to_sym, graphql_klass, "Find a #{model_name} by ID" do
+        argument :id, ID
+      end
+
+      field model_name.pluralize, [graphql_klass], "Get all #{model_name.pluralize}"
+
+      define_method model_name do |id:|
+        klass.find_by(id: id)
+      end
+
+      define_method model_name.pluralize do
+        klass.all
+      end
     end
   end
 end

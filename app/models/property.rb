@@ -15,4 +15,6 @@
 #
 class Property < ApplicationRecord
   enum property_type: { house: 0, townhouse: 1, unit: 2, villa: 3, land: 4 }
+  has_one :furnishing, dependent: :destroy
+  has_one :valuation, dependent: :destroy
 end
