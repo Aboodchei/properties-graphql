@@ -1,0 +1,320 @@
+{
+	"info": {
+		"_postman_id": "e4269b6b-7f82-49d7-ad59-a5d6f754a2dd",
+		"name": "Properties - Furnishings - Valuations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1567463"
+	},
+	"item": [
+		{
+			"name": "Queries",
+			"item": [
+				{
+					"name": "Property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query property($id: ID!) {\n    property(id: $id) {\n        id\n        title\n        ownerEmail\n        propertyType\n        valuation {\n            id\n            maximumPaymentDurationMonths\n            minimumPrice\n            optimalPrice\n        }\n        furnishing {\n            id\n            furnitureDeductible\n            overallFurnishingLevel\n            totalFurnitureCost\n        }\n    }\n}",
+								"variables": "{\n    \"id\": 1\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Properties",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query properties {\n    properties {\n        id\n        title\n        ownerEmail\n        propertyType\n        valuation {\n            id\n            maximumPaymentDurationMonths\n            minimumPrice\n            optimalPrice\n        }\n        furnishing {\n            id\n            furnitureDeductible\n            overallFurnishingLevel\n            totalFurnitureCost\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Furnishing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query furnshing($id: ID!) {\n    furnishing(id: $id) {\n        id\n        furnitureDeductible\n        overallFurnishingLevel\n        totalFurnitureCost\n        property {\n            id\n            title\n            ownerEmail\n            propertyType\n            valuation {\n                id\n                maximumPaymentDurationMonths\n                minimumPrice\n                optimalPrice\n            }\n        }\n    }\n}",
+								"variables": "{\n    \"id\": 1\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Furnishings",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query furnshing {\n    furnishings {\n        id\n        furnitureDeductible\n        overallFurnishingLevel\n        totalFurnitureCost\n        property {\n            id\n            title\n            ownerEmail\n            propertyType\n            valuation {\n                id\n                maximumPaymentDurationMonths\n                minimumPrice\n                optimalPrice\n            }\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valuation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query valuation($id: ID!) {\n    valuation(id: $id) {\n        id\n        maximumPaymentDurationMonths\n        minimumPrice\n        optimalPrice\n        property {\n            id\n            title\n            ownerEmail\n            propertyType\n            furnishing {\n                furnitureDeductible\n                overallFurnishingLevel\n                totalFurnitureCost\n            }\n        }\n    }\n}",
+								"variables": "{\n    \"id\": 1\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valuations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query valuations {\n    valuations {\n        id\n        maximumPaymentDurationMonths\n        minimumPrice\n        optimalPrice\n        property {\n            id\n            title\n            ownerEmail\n            propertyType\n            furnishing {\n                furnitureDeductible\n                overallFurnishingLevel\n                totalFurnitureCost\n            }\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mutations",
+			"item": [
+				{
+					"name": "Create Property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation propertyCreate($title: String, $ownerEmail: String, $propertyType: PropertyTypeEnum) {\n    propertyCreate(input: {propertyInput: {title: $title, ownerEmail: $ownerEmail, propertyType: $propertyType}}) {\n        property {\n            id\n            title\n            ownerEmail\n            propertyType\n        }\n    }\n}",
+								"variables": "{\n    \"title\": \"A super cool piece of land\",\n    \"ownerEmail\": \"aboodchei@gmail.com\",\n    \"propertyType\": \"land\"\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Valuation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation valuationCreate($propertyId: ID!, $optimalPrice: Int, $minimumPrice: Int, $maximumPaymentDurationMonths: Int) {\n    valuationCreate(input: {valuationInput: {propertyId: $propertyId, optimalPrice: $optimalPrice, minimumPrice: $minimumPrice, maximumPaymentDurationMonths: $maximumPaymentDurationMonths}}) {\n        valuation {\n            id\n            optimalPrice\n            minimumPrice\n            maximumPaymentDurationMonths\n            property {\n                id\n                title\n            }\n        }\n    }\n}",
+								"variables": "{\n    \"propertyId\": 6,\n    \"optimalPrice\": 12345,\n    \"minimumPrice\": 10000,\n    \"maximumPaymentDurationMonths\": 12\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Furnishing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation furnishingCreate($propertyId: ID!, $overallFurnishingLevel: OverallFurnishingLevelEnum, $furnitureDeductible: Boolean, $totalFurnitureCost: Int) {\n    furnishingCreate(input: {furnishingInput: {propertyId: $propertyId, overallFurnishingLevel: $overallFurnishingLevel, furnitureDeductible: $furnitureDeductible, totalFurnitureCost: $totalFurnitureCost}}) {\n        furnishing {\n            id\n            overallFurnishingLevel\n            furnitureDeductible\n            totalFurnitureCost\n            property {\n                id\n                title\n            }\n        }\n    }\n}",
+								"variables": "{\n    \"propertyId\": 6,\n    \"overallFurnishingLevel\": \"very_good\",\n    \"furnitureDeductible\": true,\n    \"totalFurnitureCost\": 12\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation propertyDelete($id: ID!) {\n    propertyDelete(input: {deleteInput: {id: $id}}) {\n        property {\n            id\n            title\n            ownerEmail\n            propertyType\n        }\n    }\n}",
+								"variables": "{\n    \"id\": 1\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Valuation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation valuationDelete($id: ID!) {\n    valuationDelete(input: {deleteInput: {id: $id}}) {\n        valuation {\n            id\n            maximumPaymentDurationMonths\n            minimumPrice\n            optimalPrice\n        }\n    }\n}",
+								"variables": "{\n    \"id\": 2\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Furnishing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation furnishingDelete($id: ID!) {\n    furnishingDelete(input: {deleteInput: {id: $id}}) {\n        furnishing {\n            id\n            furnitureDeductible\n            overallFurnishingLevel\n            totalFurnitureCost\n        }\n    }\n}",
+								"variables": "{\n    \"id\": 3\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
